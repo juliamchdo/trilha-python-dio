@@ -5,3 +5,5 @@ lista.append("Python")
 lista.append([40, 30, 20])
 
 print(lista)  # [1, "Python", [40, 30, 20]]
+
+#append é o push do js
