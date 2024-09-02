@@ -5,5 +5,7 @@ contatos = {
     "melaine@gmail.com": {"nome": "Melaine", "telefone": "3333-7766"},
 }
 
+print(contatos)
+
 telefone = contatos["giovanna@gmail.com"]["telefone"]  # "3443-2121"
 print(telefone)

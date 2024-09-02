@@ -10,5 +10,6 @@ for chave in contatos:
 
 print("=" * 100)
 
+# com o método items, retorna uma lista de tuplas
 for chave, valor in contatos.items():
     print(chave, valor)
