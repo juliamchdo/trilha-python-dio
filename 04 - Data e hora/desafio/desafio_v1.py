@@ -1,6 +1,6 @@
 import textwrap
 from abc import ABC, abstractclassmethod, abstractproperty
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 
 class ContasIterador:
@@ -31,15 +31,23 @@ class Cliente:
         self.endereco = endereco
         self.contas = []
         self.indice_conta = 0
+        self.data_hora_transacao = date.today()
+        self.transacoes_realizadas = 0
 
     def realizar_transacao(self, conta, transacao):
-        # TODO: validar o número de transações e invalidar a operação se for necessário
-        # print("\n@@@ Você excedeu o número de transações permitidas para hoje! @@@")
+        LIMITE_TRANSACAO_DIARIA = 10
+        dia_atual = date.today()
+
+        if self.data_hora_transacao == dia_atual:
+            if  self.transacoes_realizadas == LIMITE_TRANSACAO_DIARIA:
+                print("\n@@@ Você excedeu o número de transações permitidas para hoje! @@@")
+                return
+            
+        self.transacoes_realizadas += 1
         transacao.registrar(conta)
 
     def adicionar_conta(self, conta):
         self.contas.append(conta)
-
 
 class PessoaFisica(Cliente):
     def __init__(self, nome, data_nascimento, cpf, endereco):

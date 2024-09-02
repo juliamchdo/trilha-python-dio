@@ -2,7 +2,7 @@ from datetime import date, datetime, time
 
 data = date(2023, 7, 10)
 print(data)
-print(date.today())
+print(date.today()) # dia atual
 
 
 data_hora = datetime(2023, 7, 10)
