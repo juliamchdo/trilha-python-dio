@@ -1,6 +1,8 @@
 conjunto_a = {1, 2, 3}
 conjunto_b = {2, 3, 4}
 
+#retornar qual valor de um elemento não está presente em outro
+
 resultado = conjunto_a.difference(conjunto_b)
 print(resultado)
 

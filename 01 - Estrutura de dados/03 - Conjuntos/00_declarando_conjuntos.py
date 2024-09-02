@@ -6,3 +6,5 @@ print(letras)  # {"b", "a", "c", "x", "i"}
 
 carros = set(("palio", "gol", "celta", "palio"))
 print(carros)  # {"gol", "celta", "palio"}
+
+# OBS: Nem sempre a ordem dos itens no set será a mesma
