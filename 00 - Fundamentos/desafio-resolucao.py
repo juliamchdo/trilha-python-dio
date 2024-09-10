@@ -1,4 +1,18 @@
 
+# Separar as funções existentes de saque, depósito e exibir extrato em funções, seguir os passos:
+
+# 1- Função Saque -> deve receber os argumentos apenas por nome (keyword only). 
+# Sugestão argumentos: saldo, valor, extrato, limite, numero_saques, limite_saques. 
+# Sugestão de retorno: saldo e extrato
+
+# 2 - Função depósito -> deve receber os argumentos apenas por posição (positional only) (add / no final dos parametros)
+# Sugestão de args: saldo, valor, extrato
+# Sugestão res: saldo e extrato
+
+# 3 Função extrato -> deve receber os argumentos por posição e nome (positional only e keyword only)
+# Args posicionais: saldo
+# Args nomeados: extrato
+
 # Criar duas novas funções: cadastrar usuário (cliente) e cadastrar conta bancaria (vincular com cliente) - a vontade de como fazer
 
 # Criar usuário 
@@ -22,6 +36,7 @@ def menu ():
     [s] Sacar
     [e] Extrato
     [u] Criar Usuário
+    [c] Criar Conta
     [q] Sair
 
     => """
@@ -89,6 +104,27 @@ def criar_usuario(usuarios):
        print(" ## Usuário cadastrado com sucesso! ## ")
        return usuario
 
+def criar_conta(usuarios, contas):
+    cpf_usuario = input("Informe o CPF do usuário: ")
+    conta = {}
+    
+    for usuario in usuarios:
+        if usuario['cpf'] == cpf_usuario:  
+            conta['agencia'] = '0001'
+            conta['numero'] = len(contas) + 1
+            conta['usuario'] = cpf_usuario
+            
+            usuario['conta'] = conta  
+            contas.append(conta) 
+            
+            return usuario, conta 
+    
+    print("Usuário com CPF informado não encontrado.")
+    return None, None
+
+            
+
+
 def main():
     saldo = 0
     limite = 500
@@ -96,6 +132,7 @@ def main():
     numero_saques = 0
     LIMITE_SAQUES = 3
     usuarios = []
+    contas = []
  
     while True:
 
@@ -113,11 +150,17 @@ def main():
         elif opcao == "e":
             exibir_extrato(saldo, extrato=extrato)
 
-        elif opcao == 'u':
+        elif opcao == "u":
             usuario = criar_usuario(usuarios=usuarios)
             if(usuario):
                 usuarios.append(usuario)
             print(usuarios)
+        
+        elif opcao == "c":
+            usuario, conta = criar_conta(usuarios=usuarios, contas=contas)
+
+            print(usuario)
+            print(conta)
 
         elif opcao == "q":
             break
