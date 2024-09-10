@@ -1,16 +1,3 @@
-# Separar as funções existentes de saque, depósito e exibir extrato em funções, seguir os passos:
-
-# 1- Função Saque -> deve receber os argumentos apenas por nome (keyword only). 
-# Sugestão argumentos: saldo, valor, extrato, limite, numero_saques, limite_saques. 
-# Sugestão de retorno: saldo e extrato
-
-# 2 - Função depósito -> deve receber os argumentos apenas por posição (positional only) (add / no final dos parametros)
-# Sugestão de args: saldo, valor, extrato
-# Sugestão res: saldo e extrato
-
-# 3 Função extrato -> deve receber os argumentos por posição e nome (positional only e keyword only)
-# Args posicionais: saldo
-# Args nomeados: extrato
 
 # Criar duas novas funções: cadastrar usuário (cliente) e cadastrar conta bancaria (vincular com cliente) - a vontade de como fazer
 
@@ -76,6 +63,12 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     
     return saldo, extrato, numero_saques
 
+def exibir_extrato(saldo, *, extrato):
+    print("\n================ EXTRATO ================")
+    print("Não foram realizadas movimentações." if not extrato else extrato)
+    print(f"\nSaldo: R$ {saldo:.2f}")
+    print("==========================================")
+
 
 def main():
     saldo = 0
@@ -98,10 +91,7 @@ def main():
             saldo, extrato, numero_saques = sacar(saldo=saldo, valor=valor, extrato=extrato, limite=limite, numero_saques=numero_saques, limite_saques=LIMITE_SAQUES)
 
         elif opcao == "e":
-            print("\n================ EXTRATO ================")
-            print("Não foram realizadas movimentações." if not extrato else extrato)
-            print(f"\nSaldo: R$ {saldo:.2f}")
-            print("==========================================")
+            exibir_extrato(saldo, extrato=extrato)
 
         elif opcao == "q":
             break
