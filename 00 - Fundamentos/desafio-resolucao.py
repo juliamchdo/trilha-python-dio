@@ -21,6 +21,7 @@ def menu ():
     [d] Depositar
     [s] Sacar
     [e] Extrato
+    [u] Criar Usuário
     [q] Sair
 
     => """
@@ -45,13 +46,13 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     excedeu_saques = numero_saques >= limite_saques
 
     if excedeu_saldo:
-        print("Operação falhou! Você não tem saldo suficiente.")
+        print(" @@ Operação falhou! Você não tem saldo suficiente. @@")
 
     elif excedeu_limite:
-        print("Operação falhou! O valor do saque excede o limite.")
+        print(" @@ Operação falhou! O valor do saque excede o limite. @@")
 
     elif excedeu_saques:
-        print("Operação falhou! Número máximo de saques excedido.")
+        print(" @@ Operação falhou! Número máximo de saques excedido. @@")
 
     elif valor > 0:
         saldo -= valor
@@ -59,7 +60,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
         numero_saques += 1
 
     else:
-        print("Operação falhou! O valor informado é inválido.")
+        print(" @@ Operação falhou! O valor informado é inválido. @@")
     
     return saldo, extrato, numero_saques
 
@@ -69,6 +70,24 @@ def exibir_extrato(saldo, *, extrato):
     print(f"\nSaldo: R$ {saldo:.2f}")
     print("==========================================")
 
+def criar_usuario(usuarios):
+    nome = input("Nome: ")
+    cpf = input("CPF: ")
+
+    cpf_duplicado = any(cpf in d.values() for d in usuarios)
+
+    if(cpf_duplicado):
+        print(" @@ CPF inválido! Já existe um usuário cadastro com este mesmo CPF. @@")
+        return
+    
+    data_nascimento = input("Data de nascimento: ")
+    endereco = input("Endereço: ")
+
+    print(cpf_duplicado)
+    if(cpf_duplicado is False):
+       usuario = {"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco}
+       print(" ## Usuário cadastrado com sucesso! ## ")
+       return usuario
 
 def main():
     saldo = 0
@@ -76,6 +95,7 @@ def main():
     extrato = ""
     numero_saques = 0
     LIMITE_SAQUES = 3
+    usuarios = []
  
     while True:
 
@@ -92,6 +112,12 @@ def main():
 
         elif opcao == "e":
             exibir_extrato(saldo, extrato=extrato)
+
+        elif opcao == 'u':
+            usuario = criar_usuario(usuarios=usuarios)
+            if(usuario):
+                usuarios.append(usuario)
+            print(usuarios)
 
         elif opcao == "q":
             break
