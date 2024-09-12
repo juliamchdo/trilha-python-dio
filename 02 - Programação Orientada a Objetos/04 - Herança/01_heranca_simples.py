@@ -21,7 +21,7 @@ class Carro(Veiculo):
 
 class Caminhao(Veiculo):
     def __init__(self, cor, placa, numero_rodas, carregado):
-        super().__init__(cor, placa, numero_rodas)
+        super().__init__(cor, placa, numero_rodas) #super() chama a implementação da classe pai, para manter a herança
         self.carregado = carregado
 
     def esta_carregado(self):
