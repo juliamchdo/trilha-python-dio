@@ -13,6 +13,7 @@ class Pessoa:
         return idade >= 18
 
 
+# não instancia a classe (Pessoa()) para acessar os métodos
 p = Pessoa.criar_de_data_nascimento(1994, 3, 21, "Guilherme")
 print(p.nome, p.idade)
 
