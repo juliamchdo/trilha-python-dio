@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod, abstractproperty
 
 
 class ControleRemoto(ABC):
+    #a classe abstrata não necessariamante tem um corpo, mas obriga as classes filhas a implementarem esse método
     @abstractmethod
     def ligar(self):
         pass

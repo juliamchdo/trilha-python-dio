@@ -324,10 +324,12 @@ def main():
 
         elif opcao == "nu":
             criar_cliente(clientes)
+            print('clientes', clientes)
 
         elif opcao == "nc":
             numero_conta = len(contas) + 1
             criar_conta(numero_conta, clientes, contas)
+            print('contas', contas)
 
         elif opcao == "lc":
             listar_contas(contas)
